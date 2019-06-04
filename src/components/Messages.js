@@ -13,8 +13,8 @@ class Messages extends Component {
     }
 
     render() {
-        var todoEntries = this.props.entries;
-        var listItems = todoEntries.map(this.createMessage);
+        var messageEntries = this.props.entries;
+        var listItems = messageEntries.map(this.createMessage);
 
         return (
             <ul className="theList">
