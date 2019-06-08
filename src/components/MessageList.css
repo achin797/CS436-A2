@@ -1,3 +1,6 @@
+.messageListMain {
+    position: center;
+}
 .messageListMain .header input {
     padding: 10px;
     font-size: 16px;
@@ -33,16 +36,47 @@
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
-
+    position: relative;
     transition: background-color .2s ease-out;
+    word-break: break-word;
 }
 
 .messageListMain .theList li:hover {
-    background-color: pink;
-    cursor: pointer;
+    background-color: lightblue;
 }
 
 
 ul.theList {
     padding: 0;
+}
+
+.theList li button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    padding: 15px;
+    transform: translate(0%, -50%);
+    background-color: rgba(255,255,255,0);;
+    transition: background-color .2s ease-out;
+    display: inline-block;
+    border-radius: 5px;
+    border: none;
+}
+
+.theList li button:hover {
+    background-color: rgba(255, 192, 203, 0.75);
+    cursor: pointer;
+}
+
+section.theDialog {
+    color: #333;
+    background-color: rgba(255,255,255,.5);
+    border: 5px;
+    border-radius: 5px;
+    position: relative;
+    transition: background-color .2s ease-out;
+    background-color: rgba(255, 192, 203, 0.75);
+    text-align: center;
+    width: 250px;
+    word-break: break-word;
 }

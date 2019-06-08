@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import Messages from "./Messages";
 import "./MessageList.css";
-import {addMessage} from "../actions";
+import {addMessage, deleteMessage} from "../actions";
 
 class MessageList extends Component {
 
@@ -10,6 +10,7 @@ class MessageList extends Component {
     constructor(props) {
         super(props);
         this.addItem = this.addItem.bind(this);
+        this.deleteMessage = this.deleteMessage.bind(this);
     }
 
     addItem(e) {
@@ -28,6 +29,13 @@ class MessageList extends Component {
 
         e.preventDefault();
     }
+    deleteMessage(key){
+        var filteredItems = this.props.items.filter(function (item) {
+            return (item.key !== key);
+        });
+
+        this.props.deleteMessage(filteredItems);
+    }
 
     render() {
         return (
@@ -39,7 +47,8 @@ class MessageList extends Component {
                         <button type="submit">add</button>
                     </form>
                 </div>
-                <Messages entries={this.props.items}/>
+                <Messages entries={this.props.items}
+                          delete={this.deleteMessage}/>
             </div>
         );
     }
@@ -51,4 +60,4 @@ const mapStateToProps = (state) => { //name is by convention
 };
 
 
-export default connect(mapStateToProps, { addMessage })(MessageList);
+export default connect(mapStateToProps, { addMessage, deleteMessage })(MessageList);

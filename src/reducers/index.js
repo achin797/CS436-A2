@@ -8,6 +8,11 @@ const messageReducer = (items = initialState, action) => {
     if (action.type === 'ADD_MESSAGE') {
         return items.concat(action.payload);
     }
+
+    if(action.type === 'DELETE_MESSAGE') {
+        return action.payload;
+    }
+
     return items;
 };
 
