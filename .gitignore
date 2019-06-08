@@ -21,11 +21,4 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.idea/workspace.xml
-.idea/workspace.xml
-src/actions/index.js
-src/components/Detail.js
-src/components/MessageList.css
-src/components/MessageList.js
-src/components/Messages.js
-src/reducers/index.js
+.idea
