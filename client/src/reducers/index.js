@@ -1,5 +1,4 @@
 import {combineReducers} from 'redux';
-import {UPDATE_MESSAGES} from "../actions/types";
 
 const initialState = [];
 const messageReducer = (items = initialState, action) => {
@@ -7,7 +6,7 @@ const messageReducer = (items = initialState, action) => {
         return items.concat(action.payload);
     }
 
-    if(action.type === UPDATE_MESSAGES){
+    if(action.type === 'UPDATE_MESSAGES'){
         return action.payload;
     }
 

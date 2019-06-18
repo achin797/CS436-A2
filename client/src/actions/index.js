@@ -1,6 +1,6 @@
 const apiUrl = '/express_backend';
 
-
+//For initial load of the client
 export const addMessage = message => {
     return {
         type: 'ADD_MESSAGE',
