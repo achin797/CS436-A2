@@ -1,20 +1,13 @@
 import {combineReducers} from 'redux';
-import {POST_MESSAGE_SUCCESS, DELETE_MESSAGE} from "../actions/types";
+import {UPDATE_MESSAGES} from "../actions/types";
 
 const initialState = [];
-
-
-
 const messageReducer = (items = initialState, action) => {
     if (action.type === 'ADD_MESSAGE') {
         return items.concat(action.payload);
     }
 
-    if(action.type === DELETE_MESSAGE) {
-        return action.payload;
-    }
-
-    if(action.type === POST_MESSAGE_SUCCESS){
+    if(action.type === UPDATE_MESSAGES){
         return action.payload;
     }
 

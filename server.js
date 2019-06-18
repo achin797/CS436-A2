@@ -14,12 +14,14 @@ app.listen(port, () => console.log('Listening on port ${port}'));
 
 // create a GET route
 app.get('/express_backend', (req, res) => {
+    delay();
     res.send(messages);
 });
 
 
 //create a POST route
 app.post('/express_backend', function (req, res) {
+    delay();
     const newMessage = req.body;
     messages.push(newMessage);
     res.setHeader('Content-Type', 'application/json');
@@ -28,6 +30,7 @@ app.post('/express_backend', function (req, res) {
 
 //create a DELETE route
 app.delete('/express_backend/:id', function (req, res) {
+    delay();
     let key = parseInt(req.params.id);
     messages = messages.filter(function (message) {
             return (message.key !== key);
@@ -35,3 +38,8 @@ app.delete('/express_backend/:id', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(messages);
 });
+
+function delay(){
+    let stopTime = Date.now() + 1000;
+    while (Date.now() < stopTime){}
+}

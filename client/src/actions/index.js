@@ -8,13 +8,6 @@ export const addMessage = message => {
     };
 };
 
-export const deleteMessage = messages => {
-    return {
-        type: 'DELETE_MESSAGE',
-        payload: messages,
-    };
-};
-
 export const postMessage = message => {
     return (dispatch) => {
         return fetch(apiUrl, {
@@ -24,7 +17,7 @@ export const postMessage = message => {
         }).then(response => {
             response.json()
                 .then(messages => {
-                    dispatch(postMessageSuccess(messages))
+                    dispatch(updateMessages(messages))
                 })
                 .catch(error => {
                     throw(error);
@@ -36,9 +29,9 @@ export const postMessage = message => {
     };
 };
 
-export const postMessageSuccess = message => {
+export const updateMessages = message => {
     return {
-        type: 'POST_MESSAGE_SUCCESS',
+        type: 'UPDATE_MESSAGES',
         payload: message,
     };
 };
@@ -50,7 +43,7 @@ export const deleteMessageExpress = item => {
         }).then(response => {
             response.json()
                 .then(messages => {
-                    dispatch(postMessageSuccess(messages))
+                    dispatch(updateMessages(messages))
                 })
                 .catch(error => {
                     throw(error);
@@ -59,12 +52,5 @@ export const deleteMessageExpress = item => {
             .catch(error => {
                 throw(error);
             });
-    };
-};
-
-export const deleteMessageSuccess = messages => {
-    return {
-        type: 'DELETE_MESSAGE_SUCCESS',
-        payload: messages,
     };
 };
