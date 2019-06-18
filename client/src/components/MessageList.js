@@ -6,11 +6,34 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import Messages from "./Messages";
 import "./MessageList.css";
-import {addMessage, deleteMessage} from "../actions";
+import {addMessage, deleteMessage, postMessage, deleteMessageExpress} from "../actions";
 
 class MessageList extends Component {
 
-    //TODO use different method for resolving 'this' keyword
+    componentDidMount() {
+        // Call our fetch function below once the component mounts
+        this.callBackendAPI()
+            .then((res) => {
+                for (var i = 0; i < res.length; i++) {
+                    //THIS IS BAD! PLEASE CHANGE IT ACHIN!
+                    if(res[i])
+                        this.props.addMessage(res[i])
+                }
+            })
+            .catch(err => console.log(err));
+    }
+
+    // Fetches our GET route from the Express server. (Note the route we are fetching matches the GET route from server.js
+    callBackendAPI = async () => {
+        const response = await fetch('/express_backend', {method:'GET'});
+        const body = await response.json();
+
+        if (response.status !== 200) {
+            throw Error(body.message)
+        }
+        return body;
+    };
+
     constructor(props) {
         super(props);
         this.addItem = this.addItem.bind(this);
@@ -24,7 +47,7 @@ class MessageList extends Component {
                 key: Date.now()
             };
 
-            this.props.addMessage(newItem);
+            this.props.postMessage(newItem);
             this._inputElement.value = "";
         }
 
@@ -33,12 +56,14 @@ class MessageList extends Component {
 
         e.preventDefault();
     }
-    deleteMessage(key){
-        var filteredItems = this.props.items.filter(function (item) {
-            return (item.key !== key);
-        });
 
-        this.props.deleteMessage(filteredItems);
+    deleteMessage(key) {
+        // var filteredItems = this.props.items.filter(function (item) {
+        //     return (item.key !== key);
+        // });
+        //
+        // this.props.deleteMessage(filteredItems);
+        this.props.deleteMessageExpress(key);
     }
 
     render() {
@@ -64,4 +89,4 @@ const mapStateToProps = (state) => { //name is by convention
 };
 
 
-export default connect(mapStateToProps, { addMessage, deleteMessage })(MessageList);
+export default connect(mapStateToProps, {addMessage, deleteMessage, postMessage, deleteMessageExpress})(MessageList);

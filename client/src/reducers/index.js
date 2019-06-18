@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
+import {POST_MESSAGE_SUCCESS, DELETE_MESSAGE} from "../actions/types";
 
-const initialState = [{key:1, text:'hello'}, {key:2, text:'i am'}, {key:3, text:'content'}];
+const initialState = [];
 
 
 
@@ -9,7 +10,11 @@ const messageReducer = (items = initialState, action) => {
         return items.concat(action.payload);
     }
 
-    if(action.type === 'DELETE_MESSAGE') {
+    if(action.type === DELETE_MESSAGE) {
+        return action.payload;
+    }
+
+    if(action.type === POST_MESSAGE_SUCCESS){
         return action.payload;
     }
 
