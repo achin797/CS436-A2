@@ -45,8 +45,8 @@ class MessageList extends Component {
     }
 
     addItem(e) {
-        this.setState({isLoading: true});
         if (this._inputElement.value !== "") {
+            this.setState({isLoading: true});
             var newItem = {
                 text: this._inputElement.value,
                 key: Date.now()
