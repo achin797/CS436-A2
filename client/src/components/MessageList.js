@@ -18,9 +18,9 @@ class MessageList extends Component {
                     //THIS IS BAD! PLEASE CHANGE IT ACHIN!
                     if (res[i]) {
                         this.props.addMessage(res[i]);
-                        this.setState({isLoading: false})
                     }
                 }
+                this.setState({isLoading: false})
             })
             .catch(err => console.log(err));
 
