@@ -6,11 +6,16 @@ const bodyParser = require('body-parser');
 //MongoDB setup
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost:27017/messages");
+mongoose.connect("mongodb://user:Password1@ds245927.mlab.com:45927/heroku_k4pzlqk9");
 
 // console.log that your server is up and running
 
 app.use(bodyParser.json());
+
+//Serve up static assets
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 let messageSchema = new mongoose.Schema({
     key: Number,
@@ -19,7 +24,6 @@ let messageSchema = new mongoose.Schema({
 
 let Message = mongoose.model("Messages", messageSchema);
 
-let messages = [{key: 1, text: 'hello'}, {key: 2, text: 'i am'}, {key: 3, text: 'content'}];
 
 app.listen(port, () => console.log('Listening on port ${port}'));
 
